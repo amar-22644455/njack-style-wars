@@ -1,139 +1,258 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Light Side - Style Wars</title>
-    <!-- Tailwind: <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> -->
-    <!-- Bootstrap:    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script> 
-    -->
-    <!-- Materialize: <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    -->
-    <!-- Include any styling libraries you wish here-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f9fafb;
+    }
+
+    .text-color1 { color: #de4112; }
+    .bg-color1 { background-color: #de4112; }
+    .text-color2 { color: #562edb; }
+    .bg-color2 { background-color: #562edb; }
+    .hover-color1:hover { background-color: #de4112; }
+    .hover-color2:hover { background-color: #562edb; }
+    .hover-color3:hover { background-color: #0ec044; }
+
+    .my-gradient {
+      background: linear-gradient(to bottom right, #e4e6f0 10%, #aa96fb 90%);
+    }
+
+    .my-gradient1 {
+      background: linear-gradient(to bottom right, #ebb1ad 10%, #e4e6f0 90%);
+    }
+
+    .my-gradient2 {
+      background: linear-gradient(to bottom , #fce6fd 10%, #e4e6f0 90%);
+    }
+
+    .border-mycolor { border-color: #0b8430; }
+    .border-mycolor:hover { border-color: #562edb; }
+    .border-textcolor { color: #0b8430; }
+    .border-textcolor:hover { color: #562edb; }
+
+    .div-style {
+      box-shadow: none;
+      transform: scale(1);
+      transition: all 0.3s ease-in-out;
+    }
+
+    .div-style:hover {
+      box-shadow: 0 9px 12px #0b8430;
+      transform: translateY(-4px) scale(1.05);
+      transition: all 0.3s ease-in-out;
+    }
+
+    .btn-style {
+      transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+      transform: scale(1);
+      box-shadow: none;
+    }
+
+    .btn-style:hover {
+      transform: scale(1.05);
+      box-shadow: 0 9px 12px #562edb;
+    }
+
+    .btn-style:active { transform: scale(0.95); }
+    .btn-style:hover:active { transform: scale(0.92); }
+
+    #menu-toggle:checked ~ #mobile-menu { display: flex; }
+
+    @media (max-width: 768px) {
+      section.my-gradient {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+      }
+
+      .-mt-6 { margin-top: -1rem !important; }
+      .py-20 { padding-top: 4rem !important; padding-bottom: 4rem !important; }
+      .py-16 { padding-top: 3rem !important; padding-bottom: 3rem !important; }
+      section.max-w-5xl.py-16 { padding-top: 3rem !important; padding-bottom: 3rem !important; }
+      footer { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; }
+
+      #mobile-menu a { margin-bottom: 0.25rem; }
+
+      #mobile-menu {
+        max-height: 0;
+        overflow: hidden;
+        padding-top: 0;
+        padding-bottom: 0;
+        opacity: 0;
+        transform: scaleY(0.8);
+        transform-origin: top;
+        transition: all 0.3s ease-out;
+      }
+
+      #menu-toggle:checked ~ #mobile-menu {
+        max-height: 500px;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        opacity: 1;
+        animation: bounceDown 0.6s ease-out forwards;
+      }
+    }
+
+    @keyframes bounceDown {
+      0% { transform: scaleY(0.8); opacity: 0; }
+      60% { transform: scaleY(1.05); opacity: 1; }
+      80% { transform: scaleY(0.98); }
+      100% { transform: scaleY(1); }
+    }
+
+    .hamburger-line {
+      display: block;
+      height: 3px;
+      width: 100%;
+      background-color: #562edb;
+      border-radius: 4px;
+      transition: all 0.3s ease-in-out;
+      transform-origin: center;
+    }
+
+   
+  </style>
 </head>
-<body>
-  <!-- Navbar -->
-  <nav>
-    <div>
-      <span>Light Side</span>
+<body class="text-gray-800">
+
+  <!-- Mobile Navbar -->
+  <nav class="md:hidden bg-white shadow-md px-4 py-6">
+    <div class="flex justify-between items-center">
+      <h1 class="text-2xl flex-1 font-bold text-color2">Light Side</h1>
+      <label for="menu-toggle" class="cursor-pointer flex flex-col justify-between w-7 h-6 z-50 relative md:hidden">
+  <span class="hamburger-line"></span>
+  <span class="hamburger-line"></span>
+  <span class="hamburger-line"></span>
+</label>
+
     </div>
-    <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Guidelines</a></li>
-      <li><a href="#">Join Us</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
+    <input type="checkbox" id="menu-toggle" class="hidden" />
+    <div id="mobile-menu" class="flex flex-col font-semibold text-center mt-2 -mb-3 space-y-1">
+      <a href="#" class="block [box-shadow:inset_0_2px_4px_rgba(86,46,219,0.3)] px-3 py-2 rounded btn-style text-gray-700 hover:bg-gray-100">Home</a>
+      <a href="#" class="block px-3 py-2 [box-shadow:inset_0_2px_4px_rgba(86,46,219,0.3)] rounded btn-style text-gray-700 hover:bg-gray-100">Guidelines</a>
+      <a href="#" class="block px-3 py-2 [box-shadow:inset_0_2px_4px_rgba(86,46,219,0.3)] rounded btn-style text-gray-700 hover:bg-gray-100">Join Us</a>
+      <a href="#" class="block px-3 py-2  [box-shadow:inset_0_2px_4px_rgba(86,46,219,0.3)] rounded btn-style text-gray-700 hover:bg-gray-100">Contact</a>
+    </div>
+  </nav>
+  <!-- Navbar -->
+  <nav class="hidden md:block bg-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl md:w-full mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-2xl flex-1 font-bold text-color2">Light Side</h1>
+
+<!-- Mobile Navbar -->
+
+
+
+      <!-- Nav menu -->
+ <ul id="menu" class="hidden md:flex space-x-4 text-sm font-semibold text-color2 items-center justify-end">
+  <li>
+    <button class="px-4 py-2 rounded-2xl transition duration-200 transform hover:scale-105 hover:shadow-[0_3px_6px_#562edb] active:scale-95 hover-color3">Home</button>
+  </li>
+  <li>
+    <button class="px-4 py-2 rounded-2xl transition duration-200 transform hover:scale-105 hover:shadow-[0_3px_6px_#562edb] active:scale-95 hover-color3">Guidelines</button>
+  </li>
+  <li>
+    <button class="px-4 py-2 rounded-2xl transition duration-200 transform hover:scale-105 hover:shadow-[0_3px_6px_#562edb] active:scale-95 hover-color3">Join Us</button>
+  </li>
+  <li>
+    <button class="px-4 py-2 rounded-2xl transition duration-200 transform hover:scale-105 hover:shadow-[0_3px_6px_#562edb] active:scale-95 hover-color3">Contact</button>
+  </li>
+</ul>
+
+    </div>
   </nav>
 
+
+
+
+
   <!-- Hero Section -->
-  <section>
-    <h1>Welcome to the Light Side</h1>
-    <p>
+  <section class="text-center py-20 px-6 my-gradient">
+    <h1 class="text-4xl md:text-5xl font-extrabold text-color1 mb-4">Welcome to the Light Side</h1>
+    <p class="max-w-3xl md:w-full mx-auto text-lg font-bold text-black-600 mb-8">
       Illuminate your web journey with clarity and openness. Join a community that believes in bright, accessible, and uplifting design.
     </p>
-    <button>Join the Light</button>
-    <button>Learn More</button>
+    <div class="flex justify-center gap-4">
+      <button class="bg-color2 hover-color3 btn-style text-white px-6 py-3 rounded-full font-semibold transition">Join the Light</button>
+      <button class="bg-white border border-mycolor btn-style border-textcolor px-6 py-2 rounded-full font-semibold transition">Learn More</button>
+    </div>
   </section>
 
   <!-- About Section -->
-  <section>
-    <h2>About the Light Side</h2>
-    <p>
-      The Light Side is dedicated to crafting digital experiences that are clear, inviting, and energizing. Our members value transparency, readability, and a sense of space in every design.
-    </p>
-    <p>
-      We encourage thoughtful layouts, accessible color palettes, and designs that make every visitor feel welcome. From the earliest days of the web, advocates of the Light Side have championed simplicity and openness, believing that information should be easy to find and understand.
-    </p>
-    <p>
-      Our philosophy is rooted in the idea that less is more. By minimizing distractions and focusing on what truly matters, we create digital spaces that foster learning, connection, and creativity.
-    </p>
-    <h3>Our Mission</h3>
-    <p>
-      We strive to set new standards for web accessibility and user experience. Through workshops, collaborative projects, and open discussions, we empower designers and developers to build sites that shine—regardless of device or ability.
-    </p>
-    <p>
-      The Light Side welcomes everyone, from beginners to experts, to join our movement and help shape a web that is bright, open, and inspiring.
-    </p>
+  <section class="max-w-5xl md:w-full mx-auto px-6 py-16">
+    <h2 class="text-3xl font-bold text-color1 mb-6">About the Light Side</h2>
+    <div class="space-y-4 text-gray-700 text-lg">
+      <p>The Light Side is dedicated to crafting digital experiences that are clear, inviting, and energizing. Our members value transparency, readability, and a sense of space in every design.</p>
+      <p>We encourage thoughtful layouts, accessible color palettes, and designs that make every visitor feel welcome. From the earliest days of the web, advocates of the Light Side have championed simplicity and openness, believing that information should be easy to find and understand.</p>
+      <p>Our philosophy is rooted in the idea that less is more. By minimizing distractions and focusing on what truly matters, we create digital spaces that foster learning, connection, and creativity.</p>
+      <h3 class="text-2xl text-color1 font-semibold mt-8">Our Mission</h3>
+      <p>We strive to set new standards for web accessibility and user experience. Through workshops, collaborative projects, and open discussions, we empower designers and developers to build sites that shine—regardless of device or ability.</p>
+      <p>The Light Side welcomes everyone, from beginners to experts, to join our movement and help shape a web that is bright, open, and inspiring.</p>
+    </div>
   </section>
 
   <!-- Virtues Section -->
-  <section>
-    <h2>Our Virtues</h2>
-    <div>
-      <div>
-        <h3>Clarity</h3>
-        <h4>Simple and Intuitive</h4>
-        <p>
-          Every element is placed with purpose. We minimize clutter and use whitespace to guide the eye, ensuring users can focus on what matters most. Navigation menus are straightforward, and content is structured logically to reduce cognitive load.
-        </p>
-        <h4>Readable Typography</h4>
-        <p>
-          Fonts are chosen for legibility and comfort. Headings stand out, and body text is easy to scan and understand. We pay close attention to line height, font size, and contrast, making sure that every word is a pleasure to read.
-        </p>
-        <p>
-          Clarity also means clear calls to action. Buttons are distinct, and links are descriptive, guiding users effortlessly through the site.
-        </p>
-        <button>Explore Clarity</button>
+  <section class="my-gradient1 py-20">
+    <h2 class="text-3xl text-center text-color2 font-bold mb-12">Our Virtues</h2>
+    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto px-6">
+      <!-- Clarity -->
+      <div class="bg-white p-6 rounded-xl div-style 1 flex flex-col justify-between">
+        <h3 class="text-2xl text-color1 font-bold mb-2">Clarity</h3>
+        <h4 class="font-semibold text-gray-800 mb-1">Simple and Intuitive</h4>
+        <p class="text-gray-600 mb-2">Every element is placed with purpose. We minimize clutter and use whitespace to guide the eye, ensuring users can focus on what matters most.</p>
+        <h4 class="font-semibold text-gray-800 mb-1">Readable Typography</h4>
+        <p class="text-gray-600 mb-2">Fonts are chosen for legibility and comfort. Headings stand out, and body text is easy to scan and understand.</p>
+        <button class="mt-4 bg-color2 btn-style text-white px-4 font-semibold py-2 rounded-full hover-color3 transition">Explore Clarity</button>
       </div>
-      <div>
-        <h3>Openness</h3>
-        <h4>Welcoming Layouts</h4>
-        <p>
-          Our pages invite exploration, with open navigation and clear calls to action. We avoid barriers, making information accessible to all. Whether you’re browsing on a phone, tablet, or desktop, our layouts adapt to your needs.
-        </p>
-        <h4>Inclusive Design</h4>
-        <p>
-          Accessibility is a priority. We use high-contrast colors, descriptive links, and ensure our sites work for everyone. Our designs are tested with screen readers and keyboard navigation to guarantee universal usability.
-        </p>
-        <p>
-          Openness also means sharing knowledge. We publish guides, host Q&A sessions, and encourage members to contribute resources for the benefit of the whole community.
-        </p>
-        <button>Discover Openness</button>
+      <!-- Openness -->
+      <div class="bg-white p-6 rounded-xl div-style  flex flex-col justify-between">
+        <h3 class="text-2xl text-color1 font-bold mb-2">Openness</h3>
+        <h4 class="font-semibold text-gray-800 mb-1">Welcoming Layouts</h4>
+        <p class="text-gray-600 mb-2">Our pages invite exploration, with open navigation and clear calls to action. We avoid barriers, making information accessible to all.</p>
+        <h4 class="font-semibold text-gray-800 mb-1">Inclusive Design</h4>
+        <p class="text-gray-600 mb-2">Accessibility is a priority. We use high-contrast colors, descriptive links, and ensure our sites work for everyone.</p>
+        <button class="mt-4 bg-color2 btn-style text-white px-4 font-semibold py-2 rounded-full hover-color3 transition">Discover Openness</button>
       </div>
-      <div>
-        <h3>Energy</h3>
-        <h4>Vibrant Visuals</h4>
-        <p>
-          Bright accents and uplifting imagery keep users engaged and motivated. We use color to create a positive, energetic atmosphere. Visual cues such as icons, highlights, and banners help direct attention and add personality to our designs.
-        </p>
-        <h4>Interactive Experiences</h4>
-        <p>
-          Subtle animations and responsive feedback make every interaction enjoyable and intuitive. Hover effects, transitions, and micro-interactions bring the interface to life without overwhelming the user.
-        </p>
-        <p>
-          Energy is about momentum. We encourage users to participate, share feedback, and become a part of the Light Side’s ongoing story.
-        </p>
-        <button>Get Inspired</button>
+      <!-- Energy -->
+      <div class="bg-white p-6 rounded-xl div-style  flex flex-col justify-between">
+        <h3 class="text-2xl text-color1 font-bold mb-2">Energy</h3>
+        <h4 class="font-semibold text-gray-800 mb-1">Vibrant Visuals</h4>
+        <p class="text-gray-600 mb-2">Bright accents and uplifting imagery keep users engaged and motivated. Visual cues help direct attention and add personality.</p>
+        <h4 class="font-semibold text-gray-800 mb-1">Interactive Experiences</h4>
+        <p class="text-gray-600 mb-2">Subtle animations and responsive feedback make every interaction enjoyable and intuitive.</p>
+        <button class="mt-4 bg-color2 btn-style text-white px-4 py-2 font-semibold rounded-full hover-color3 transition">Get Inspired</button>
       </div>
     </div>
   </section>
 
   <!-- Call to Action Section -->
-  <section>
-    <h2>Ready to Shine?</h2>
-    <p>
-      Become a part of the Light Side and help us set new standards for web design excellence. Sign up to receive updates, participate in our next workshop, or contribute your own ideas to our growing community.
-    </p>
-    <ul>
+  <section class="max-w-5xl md:w-full mx-auto py-16 px-6">
+    <h2 class="text-3xl text-orange-600 font-bold mb-6">Ready to Shine?</h2>
+    <p class="text-lg text-gray-700 mb-6">Become a part of the Light Side and help us set new standards for web design excellence.</p>
+    <ul class="list-disc list-inside mb-6 space-y-2 text-gray-700">
       <li>Sign up for our newsletter to get the latest resources and event invites.</li>
       <li>Browse our gallery of featured Light Side designs for inspiration.</li>
       <li>Connect with other members on our forum and share your journey.</li>
     </ul>
-    <button>Sign Up Now</button>
-    <button>View Member Stories</button>
+    <div class="flex gap-4">
+      <button class="bg-color2 hover-color3 btn-style text-white px-6 py-2 rounded-full font-semibold transition">Sign Up Now</button>
+      <button class="bg-white border border-mycolor btn-style border-textcolor px-6 py-2 rounded-full font-semibold transition">View Member Stories</button>
+    </div>
   </section>
 
   <!-- Footer -->
-  <footer>
-    <h3>Contact the Light Side Team</h3>
-    <p>
-      Email: light@stylewars.com  
-      Follow us on social media for updates, tips, and inspiration.
-    </p>
-    <p>
-      &copy; 2025 Light Side. All rights reserved.
-    </p>
+  <footer class="bg-white text-center py-5 shadow-inner border-t-2 border-red-600">
+    <h3 class="text-xl font-semibold text-color2 mb-2">Contact the Light Side Team</h3>
+    <p class="text-gray-600 mb-2">Email: light@stylewars.com</p>
+    <p class="text-sm text-gray-400">&copy; 2025 Light Side. All rights reserved.</p>
   </footer>
+
 </body>
 </html>
